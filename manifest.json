@@ -1,0 +1,17 @@
+{
+  "name": "Rotor Controller F1TEQ",
+  "version": "1.7.3",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "improv": false,
+      "parts": [
+        {
+          "path": "firmware/Rotor_Controller_F1TEQ_V1_7_3_FACTORY.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+ROTOR CONTROLLER F1TEQ VERSION 1.7.3
+======================================
+
+NOUVEAUTE
+---------
+La hauteur des cartes de Pilotage par map a ete reduite pour rendre les commandes
+moteur visibles plus rapidement et limiter le defilement vertical.
+
+MODIFICATIONS
+-------------
+- carte vectorielle plus compacte sur ordinateur, tablette et smartphone ;
+- carte Leaflet/OpenStreetMap plus compacte sur ordinateur, tablette et smartphone ;
+- aucune modification du calcul d azimut ou du comportement du rotor ;
+- toutes les securites et toutes les fonctions de la Version 1.7.2 sont conservees.
+
+PUBLICATION DE LA RELEASE GITHUB
+--------------------------------
+Tag : v1.7.3
+Titre conseille : Rotor Controller F1TEQ Version 1.7.3
+Fichier obligatoire : Rotor_Controller_F1TEQ_UPDATE.bin
+
+Le fichier UPDATE doit etre le binaire principal de l application compilee, et non
+le fichier FACTORY, merged, bootloader ou partitions.

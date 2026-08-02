@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Installation USB du Rotor Controller F1TEQ Version 1.7.3 pour ESP32-S3 N16R8.">
+  <title>Installation — Rotor Controller F1TEQ 1.7.3</title>
+  <link rel="icon" type="image/jpeg" href="assets/favicon-f1teq.jpg">
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    :root{--fond:#06101c;--fond2:#0a1d31;--panneau:rgba(15,31,51,.96);--texte:#eef6ff;--secondaire:#a9bfd2;--bleu:#28a9ff;--vert:#38d996;--rouge:#ff676b;--orange:#ffb34d;--bordure:#294a69;--esp-tools-button-color:#157ed1;--esp-tools-button-text-color:#fff;--esp-tools-button-border-radius:12px}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:var(--texte);background:radial-gradient(circle at 20% 0,#123453 0,transparent 35%),linear-gradient(145deg,var(--fond),var(--fond2))}
+    .page{width:min(940px,calc(100% - 28px));margin:0 auto;padding:28px 0 45px}header{text-align:center;margin-bottom:22px}.logo{width:96px;height:96px;padding:7px;border-radius:20px;background:#fff;box-shadow:0 10px 30px rgba(40,169,255,.28)}
+    h1{margin:15px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.08}.version{color:var(--bleu);font-weight:bold;font-size:18px}.intro{max-width:760px;margin:12px auto 0;color:var(--secondaire);font-size:17px;line-height:1.6}
+    .badges{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:14px}.badge{padding:6px 10px;border:1px solid #315777;border-radius:999px;background:#102840;color:#c9e7ff;font-size:12px;font-weight:bold}
+    .card{background:linear-gradient(150deg,var(--panneau),rgba(11,27,45,.98));border:1px solid var(--bordure);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 14px 34px rgba(0,0,0,.28)}.card h2{margin:0 0 14px;font-size:21px}
+    .steps{display:grid;gap:11px;margin:0;padding:0;list-style:none;counter-reset:etape}.steps li{counter-increment:etape;display:flex;gap:12px;align-items:flex-start;color:#dceaf6;line-height:1.5}.steps li:before{content:counter(etape);display:grid;place-items:center;min-width:30px;height:30px;border-radius:50%;background:#183d5d;color:#fff;font-weight:bold;border:1px solid #3475a5}
+    .install-zone{text-align:center;padding:10px 0 2px}#firmware-status{margin:0 0 15px;font-weight:bold}.ok{color:var(--vert)}.erreur{color:var(--rouge)}.attente{color:var(--orange)}#installer{display:none}
+    button[slot="activate"]{border:0;background:linear-gradient(135deg,#157ed1,#28a9ff);color:#fff;font-weight:bold;font-size:18px;padding:15px 24px;border-radius:12px;cursor:pointer;box-shadow:0 10px 24px rgba(40,169,255,.22)}button[slot="activate"]:hover{transform:translateY(-1px)}
+    .unsupported{display:block;color:var(--orange);line-height:1.5}.notice{border-left:5px solid var(--orange);background:rgba(255,179,77,.10);padding:13px 15px;border-radius:10px;color:#ffe3bc;line-height:1.55}.success{border-left:5px solid var(--vert);background:rgba(56,217,150,.10);padding:13px 15px;border-radius:10px;color:#d7ffed;line-height:1.55}
+    .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.feature{padding:11px 12px;border:1px solid #294a69;border-radius:10px;background:#10263d;color:#dceaf6}.feature strong{color:#fff}
+    code{background:#071624;border:1px solid #24425f;border-radius:6px;padding:2px 6px;color:#d9efff}a{color:#72c8ff}footer{text-align:center;color:#819bb1;font-size:13px;margin-top:24px;line-height:1.5}@media (max-width:620px){.card{padding:18px}.page{width:min(100% - 18px,940px)}.features{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <img class="logo" src="assets/favicon-f1teq.jpg" alt="Logo F1TEQ avec antenne directive">
+      <h1>Rotor Controller F1TEQ</h1>
+      <div class="version">Installation USB — Version 1.7.3</div>
+      <div class="badges"><span class="badge">ESP32-S3 N16R8</span><span class="badge">Sécurité globale</span><span class="badge">Mises à jour GitHub</span><span class="badge">Maps compactes</span></div>
+      <p class="intro">Programmez une carte vierge ou réinstallez complètement le contrôleur depuis Chrome ou Edge, sans Arduino IDE.</p>
+    </header>
+
+    <section class="card">
+      <h2>Avant de commencer</h2>
+      <ol class="steps">
+        <li>Utilisez un ordinateur et ouvrez cette page avec Google Chrome ou Microsoft Edge.</li>
+        <li>Branchez l’ESP32-S3 avec un câble USB capable de transmettre les données.</li>
+        <li>Fermez Arduino IDE, le moniteur série et tout logiciel utilisant le port USB.</li>
+        <li>L’installation complète efface la configuration actuellement mémorisée sur la carte.</li>
+      </ol>
+    </section>
+
+    <section class="card install-zone">
+      <h2>Installation automatique</h2>
+      <p id="firmware-status" class="attente">Vérification du micrologiciel Version 1.7.3…</p>
+      <esp-web-install-button id="installer" manifest="./manifest.json">
+        <button slot="activate" type="button">INSTALLER LA VERSION 1.7.3</button>
+        <span slot="unsupported" class="unsupported">Ce navigateur ne permet pas la programmation USB. Ouvrez la page avec Chrome ou Edge sur un ordinateur.</span>
+        <span slot="not-allowed" class="unsupported">La programmation USB nécessite la page HTTPS publiée sur GitHub Pages.</span>
+      </esp-web-install-button>
+      <noscript><p class="erreur">JavaScript doit être activé pour utiliser l’installateur.</p></noscript>
+    </section>
+
+    <section class="card">
+      <h2>Principales fonctions incluses</h2>
+      <div class="features">
+        <div class="feature"><strong>Protection des mouvements</strong><br>Arrêt des deux relais et délai de sécurité avant chaque nouvelle commande.</div>
+        <div class="feature"><strong>Parking</strong><br>Bouton direct à gauche de Pilotage et position mémorisée.</div>
+        <div class="feature"><strong>Réseau</strong><br>Choix DHCP ou IP fixe avec masque, passerelle et DNS.</div>
+        <div class="feature"><strong>Mises à jour</strong><br>Vérification et installation directe depuis les Releases GitHub.</div>
+        <div class="feature"><strong>Pilotage par map</strong><br>Cartes vectorielles et Leaflet moins hautes pour afficher les commandes plus tôt.</div>
+        <div class="feature"><strong>CAT universel</strong><br>Balises, GS-232B et liaison avec F1TEQ Radio Agent.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Après l’installation</h2>
+      <div class="success">Redémarrez la carte, puis recherchez le réseau <code>G1000DXC-CONFIG-XXXXXX</code>.<br>Mot de passe : <code>rotor1234</code><br>Adresse de configuration : <code>http://192.168.4.1</code></div>
+    </section>
+
+    <section class="card">
+      <h2>En cas de non-détection de l’ESP32</h2>
+      <div class="notice">Maintenez <strong>BOOT</strong>, appuyez brièvement sur <strong>RESET/EN</strong>, relâchez RESET/EN, puis relâchez BOOT. Relancez ensuite l’installation.</div>
+    </section>
+
+    <section class="card">
+      <h2>Installation complète ou mise à jour ?</h2>
+      <div class="notice"><strong>Cette page réalise une installation complète par USB.</strong><br>Pour un contrôleur déjà en service, utilisez de préférence le menu <strong>RAZ et MAJ</strong> et la mise à jour GitHub intégrée. Ne téléversez jamais le fichier FACTORY depuis le menu Web du contrôleur.</div>
+    </section>
+
+    <section class="card">
+      <h2>Documentation</h2>
+      <p><a href="https://f1teq.blogspot.com/" target="_blank" rel="noopener">Ouvrir le blog F1TEQ</a> · <a href="https://github.com/f1teq/rotor-controller-f1teq-installer/releases/latest" target="_blank" rel="noopener">Voir la dernière Release</a></p>
+    </section>
+
+    <footer>© F1TEQ — Rotor Controller Wi-Fi pour Yaesu G1000DXC<br>Version 1.7.3 — Projet radioamateur indépendant, non affilié à Yaesu.</footer>
+  </main>
+
+  <script>
+    async function verifierFirmware() {
+      const status = document.getElementById('firmware-status');
+      const installer = document.getElementById('installer');
+      try {
+        const manifestResponse = await fetch('./manifest.json?t=' + Date.now(), {cache: 'no-store'});
+        if (!manifestResponse.ok) throw new Error('manifest.json inaccessible');
+        const manifest = await manifestResponse.json();
+        const firmwarePath = manifest.builds?.[0]?.parts?.[0]?.path;
+        if (!firmwarePath) throw new Error('chemin du firmware absent');
+        const firmwareResponse = await fetch(firmwarePath + '?t=' + Date.now(), {method: 'HEAD', cache: 'no-store'});
+        if (!firmwareResponse.ok) throw new Error('fichier FACTORY absent');
+        status.textContent = 'Micrologiciel Version 1.7.3 prêt à être installé.';
+        status.className = 'ok';
+        installer.style.display = 'inline-block';
+      } catch (error) {
+        status.textContent = 'Le binaire Version 1.7.3 est en cours de génération par GitHub Actions ou n’est pas encore publié.';
+        status.className = 'erreur';
+        installer.style.display = 'none';
+        console.error(error);
+      }
+    }
+    verifierFirmware();
+  </script>
+</body>
+</html>
